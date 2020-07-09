@@ -86,10 +86,10 @@ def printScore():
         write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 20, "bold"))
         turtle.pencolor("red")
         goto(((grid+1) * 80), ((grid * 100) + 20))
-        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 20))
+        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 15))
     if turn == 2:
         turtle.pencolor("blue")
-        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 20))
+        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 15))
         turtle.pencolor("red")
         goto(((grid+1) * 80), ((grid * 100) + 20))
         write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 20, "bold"))
