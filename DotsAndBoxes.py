@@ -21,23 +21,23 @@ p2_name=input("Enter the name of Player 2: ")
 grid=input("Enter The Size Of Grid: ")
 sn=["x","P1","P2"]
 if p1_name=='':
-  p1_name="Player 1"
+    p1_name="Player 1"
 else:
-  sn[1]=(p1_name[0].upper())
+    sn[1]=(p1_name[0].upper())
 if p2_name=='':
-  p2_name="Player 2"
+    p2_name="Player 2"
 else:
-  sn[2]=(p2_name[0].upper())
+    sn[2]=(p2_name[0].upper())
 if grid=='':
     grid=6
 else:
-  grid=int(grid)
-
+    grid=int(grid)
 
 title("Dots And Boxes By Rahul Choudhary")
 screen = getscreen()
 screen.listen()
 hideturtle()
+turtle.ht()
 tracer(0,0)
 screen.setworldcoordinates(0,0,(grid * 100 + 100),(grid * 100 + 200))
 penup()
@@ -112,7 +112,6 @@ def click(x1,y1):
             if ((tempx * 100) + 90) >= x >= ((tempx * 100) + 10) and ((tempy * 100) + 10) >= y >= ((tempy * 100) - 10):
                 onscreenclick(None)
                 updateVariable(tempx, tempy, False)
-    message_box('Info','Click Between Dots')
 
 def updateVariable(x, y, isVertical):
     goAgain = False
@@ -172,11 +171,16 @@ def updateVariable(x, y, isVertical):
         goto(150,250)
         score = scorecount()
         if score[0] > score[1]:
-            write("{} wins".format(p1_name.title()), align="center", font=("Arial", 30))
+            message_box("Congrats","{} wins".format(p1_name.title()))
+            write("{} wins".format(p1_name.title()), align="center", font=("Arial", 25))
+        elif score[0] < score[1]:
+            message_box("Congrats","{} wins".format(p2_name.title()))
+            write("{} wins".format(p2_name.title()), align="center", font=("Arial", 25))
         else:
-            write("{} wins".format(p2_name.title()), align="center", font=("Arial", 30))
+            message_box("Play Again","Tie!!")
+            write("Tie!!", align="center", font=("Arial", 25))
         goto(150,100)
-        write("Play again", align="center", font=("Arial", 30))
+        write("Play again", align="center", font=("Arial", 25))
         onscreenclick(reset)
         mainloop()
 
