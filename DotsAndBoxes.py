@@ -104,16 +104,16 @@ def click(x1,y1):
             tempy = (ynum % (grid-1)) + 1
             if ((tempx * 100) + 10) >= x >= ((tempx * 100) - 10) and ((tempy * 100) + 90) >= y >= ((tempy * 100) + 10):
                 onscreenclick(None)
-                updateVariable(tempx, tempy, True)
+                update(tempx, tempy, True)
     for xnum in range(1,(grid)):
         tempx = (xnum % (grid -1)) + 1
         for ynum in range(1,(grid + 1)):
             tempy = (ynum % grid) + 1
             if ((tempx * 100) + 90) >= x >= ((tempx * 100) + 10) and ((tempy * 100) + 10) >= y >= ((tempy * 100) - 10):
                 onscreenclick(None)
-                updateVariable(tempx, tempy, False)
+                update(tempx, tempy, False)
 
-def updateVariable(x, y, isVertical):
+def update(x, y, isVertical):
     new = False
     global V
     global H
@@ -158,43 +158,22 @@ def updateVariable(x, y, isVertical):
                     turtle.pencolor("red")
                 write(sn[boxes[pos]], align="center", font=("Arial", int(150/grid)))
                 turtle.pencolor("black")
+
     if not 0 in boxes:
         clear()
         goto(150,250)
         score = scorecount()
         if score[0] > score[1]:
             message_box("Congrats","  {} wins    ".format(p1_name.title()))
-            write("{} wins".format(p1_name.title()), align="center", font=("Arial", 25))
         elif score[0] < score[1]:
             message_box("Congrats","  {} wins    ".format(p2_name.title()))
-            write("{} wins".format(p2_name.title()), align="center", font=("Arial", 25))
         else:
-            message_box("Play Again","   Tie!!    ")
-            write("  Tie!!", align="center", font=("Arial", 25))
+            message_box("Play Again","       Tie!!       ")
         goto(150,100)
-        write("Play again", align="center", font=("Arial", 25))
-        onscreenclick(reset)
+        onscreenclick(exit(0))
         mainloop()
 
     finish(new)
-
-def reset(x1, y1):
-    global V
-    global H
-    global boxes
-    global turn
-    x = int(x1//1)
-    y = int(y1//1)
-    if 150 >= x >= 50 and 150 >= y >= 50:
-        onscreenclick(None)
-        V = [0,0,0,0,0,0,0,0,0,0,0,0] 
-        H = [0,0,0,0,0,0,0,0,0,0,0,0]
-        boxes = [0,0,0,0,0,0,0,0,0]
-        turn = 1
-        clear()
-        finish(True)
-    if 450 >= x >= 350 and 150 >= y >= 50:
-        raise SystemExit
 
 def finish(again):
     global turn
