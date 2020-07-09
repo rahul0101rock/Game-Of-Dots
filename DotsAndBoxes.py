@@ -21,16 +21,18 @@ p2_name=input("Enter the name of Player 2: ")
 grid=input("Enter The Size Of Grid: ")
 sn=["x","P1","P2"]
 if p1_name=='':
-
-    p1_name="Player 1"
+  p1_name="Player 1"
+else:
+  sn[1]=(p1_name[0].upper())
 if p2_name=='':
-    p2_name="Player 2"
+  p2_name="Player 2"
+else:
+  sn[2]=(p2_name[0].upper())
 if grid=='':
     grid=6
 else:
-    sn[1]=(p1_name[0].upper())
-    sn[2]=(p2_name[0].upper())
-    grid=int(grid)
+  grid=int(grid)
+
 
 title("Dots And Boxes By Rahul Choudhary")
 screen = getscreen()
@@ -81,16 +83,16 @@ def printScore():
     goto(((grid+1) * 20), ((grid * 100) + 20))
     if turn == 1:
         turtle.pencolor("blue")
-        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 40, "bold"))
+        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 20, "bold"))
         turtle.pencolor("red")
         goto(((grid+1) * 80), ((grid * 100) + 20))
-        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 40))
+        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 20))
     if turn == 2:
         turtle.pencolor("blue")
-        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 40))
+        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 20))
         turtle.pencolor("red")
         goto(((grid+1) * 80), ((grid * 100) + 20))
-        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 40, "bold"))
+        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 20, "bold"))
     turtle.pencolor("black")
     
 def click(x1,y1):
@@ -161,7 +163,7 @@ def updateVariable(x, y, isVertical):
                     turtle.pencolor("blue")
                 else:
                     turtle.pencolor("red")
-                write(sn[boxes[pos]], align="center", font=("Arial", int(240/grid)))
+                write(sn[boxes[pos]], align="center", font=("Arial", int(150/grid)))
                 turtle.pencolor("black")
 
     # Detect a winner
