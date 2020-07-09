@@ -114,14 +114,13 @@ def click(x1,y1):
                 updateVariable(tempx, tempy, False)
 
 def updateVariable(x, y, isVertical):
-    goAgain = False
+    new = False
     global V
     global H
     if isVertical:
         V[((y - 1) * grid + x)-1] = 1
     else:
         H[((y - 1) * (grid - 1) + x)-1] = 1
-    # Draw lines
     clear()
     for xnum in range(1,(grid+1)): # 4
         for ynum in range(1,grid): # 3
@@ -137,8 +136,6 @@ def updateVariable(x, y, isVertical):
                 pendown()
                 goto((100 * (xnum + 1)), (100 * ynum))
                 penup()
-
-    # Check for box filled
     boxTotal = len(boxes)
     for i in range(0,boxTotal):
         yMulti = 0
@@ -148,10 +145,7 @@ def updateVariable(x, y, isVertical):
         if (0 not in itemgetter(i,(i + grid - 1))(H)) and (0 not in itemgetter((i + yMulti-1),(i+ yMulti))(V)):
             if boxes[i] == 0:
                 boxes[i] = turn
-                goAgain = True
-
-
-    # Draw boxes
+                new = True
     for xnum in range(1,grid):
         for ynum in range(1,grid):
             pos = ((ynum-1) * (grid-1)) + xnum - 1
@@ -164,27 +158,25 @@ def updateVariable(x, y, isVertical):
                     turtle.pencolor("red")
                 write(sn[boxes[pos]], align="center", font=("Arial", int(150/grid)))
                 turtle.pencolor("black")
-
-    # Detect a winner
     if not 0 in boxes:
         clear()
         goto(150,250)
         score = scorecount()
         if score[0] > score[1]:
-            message_box("Congrats","{} wins".format(p1_name.title()))
+            message_box("Congrats","  {} wins    ".format(p1_name.title()))
             write("{} wins".format(p1_name.title()), align="center", font=("Arial", 25))
         elif score[0] < score[1]:
-            message_box("Congrats","{} wins".format(p2_name.title()))
+            message_box("Congrats","  {} wins    ".format(p2_name.title()))
             write("{} wins".format(p2_name.title()), align="center", font=("Arial", 25))
         else:
-            message_box("Play Again","Tie!!")
-            write("Tie!!", align="center", font=("Arial", 25))
+            message_box("Play Again","   Tie!!    ")
+            write("  Tie!!", align="center", font=("Arial", 25))
         goto(150,100)
         write("Play again", align="center", font=("Arial", 25))
         onscreenclick(reset)
         mainloop()
 
-    finishUp(goAgain)
+    finish(new)
 
 def reset(x1, y1):
     global V
@@ -200,11 +192,11 @@ def reset(x1, y1):
         boxes = [0,0,0,0,0,0,0,0,0]
         turn = 1
         clear()
-        finishUp(True)
+        finish(True)
     if 450 >= x >= 350 and 150 >= y >= 50:
         raise SystemExit
 
-def finishUp(again):
+def finish(again):
     global turn
     if turn == 1 and not again:
         turn = 2
