@@ -56,7 +56,6 @@ for i in range(grid-1):
     for i in (range(grid-1)):
         boxes.append(0)
 turn = 1
-
 def main():
     printScore()
     goto(100,100)
@@ -83,16 +82,16 @@ def printScore():
     goto(((grid+1) * 20), ((grid * 100) + 20))
     if turn == 1:
         turtle.pencolor("blue")
-        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 20, "bold"))
+        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 40, "bold"))
         turtle.pencolor("red")
         goto(((grid+1) * 80), ((grid * 100) + 20))
-        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 15))
+        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 35))
     if turn == 2:
         turtle.pencolor("blue")
-        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 15))
+        write("{}: ".format(p1_name.title()) + str(score[0]), align="center", font=("Arial", 35))
         turtle.pencolor("red")
         goto(((grid+1) * 80), ((grid * 100) + 20))
-        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 20, "bold"))
+        write("{}: ".format(p2_name.title()) + str(score[1]), align="center", font=("Arial", 40, "bold"))
     turtle.pencolor("black")
     
 def click(x1,y1):
@@ -121,6 +120,7 @@ def update(x, y, isVertical):
         V[((y - 1) * grid + x)-1] = 1
     else:
         H[((y - 1) * (grid - 1) + x)-1] = 1
+    # Draw lines
     clear()
     for xnum in range(1,(grid+1)): # 4
         for ynum in range(1,grid): # 3
@@ -136,6 +136,8 @@ def update(x, y, isVertical):
                 pendown()
                 goto((100 * (xnum + 1)), (100 * ynum))
                 penup()
+
+    # Check for box filled
     boxTotal = len(boxes)
     for i in range(0,boxTotal):
         yMulti = 0
@@ -146,6 +148,9 @@ def update(x, y, isVertical):
             if boxes[i] == 0:
                 boxes[i] = turn
                 new = True
+
+
+    # Draw boxes
     for xnum in range(1,grid):
         for ynum in range(1,grid):
             pos = ((ynum-1) * (grid-1)) + xnum - 1
@@ -156,9 +161,10 @@ def update(x, y, isVertical):
                     turtle.pencolor("blue")
                 else:
                     turtle.pencolor("red")
-                write(sn[boxes[pos]], align="center", font=("Arial", int(150/grid)))
+                write(sn[boxes[pos]], align="center", font=("Arial", int(200/grid)))
                 turtle.pencolor("black")
 
+    # Detect a winner
     if not 0 in boxes:
         clear()
         goto(150,250)
@@ -168,12 +174,14 @@ def update(x, y, isVertical):
         elif score[0] < score[1]:
             message_box("Congrats","  {} wins    ".format(p2_name.title()))
         else:
-            message_box("Play Again","       Tie!!       ")
+            message_box("Play Again","  Tie!!       ")
         goto(150,100)
         onscreenclick(exit(0))
         mainloop()
 
     finish(new)
+
+
 
 def finish(again):
     global turn
