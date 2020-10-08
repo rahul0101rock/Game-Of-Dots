@@ -15,7 +15,7 @@ def message_box(subject, content):
         root.destroy()
     except:
         pass
-print("--------Welcome to the Game 'Dot And Boxes'------- \n-----------------By Rahul choudhary-----------------")
+print("---------Welcome to the Game 'Game of Dots'--------- \n-----------------By Rahul choudhary-----------------")
 p1_name=input("Enter the name of Player 1: ")
 p2_name=input("Enter the name of Player 2: ")
 grid=input("Enter The Size Of Grid: ")
