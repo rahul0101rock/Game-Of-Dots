@@ -33,7 +33,7 @@ if grid=='':
 else:
     grid=int(grid)
 
-title("Dots And Boxes By Rahul Choudhary")
+title("Game Of Dots By Rahul Choudhary")
 screen = getscreen()
 screen.listen()
 hideturtle()
