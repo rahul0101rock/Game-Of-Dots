@@ -1,5 +1,5 @@
 # Game-Of-Dots
-## Dots And Boxes Game It Is A Game of Dots Usually Played With Pen And Paper 
+## It Is A Multiplayer Game Usually Played With Pen And Paper 
 ## One Box Gives One Point , Player With Highest Score Wins!!
 ### First Screen (For Entering Info)
 ![Screenshot](ss/1.png)
